@@ -1,20 +1,24 @@
 from enum import Enum
 
 class TextType(Enum):
-    BOLD="**Bold text**"
-    ITALIC = "_Italic text_"
-    CODE = "`Code text`"
-    LINK = "[anchor text](url)"
-    IMAGE = "![alt text](url)"
+    PLAIN="plain"
+    BOLD="bold"
+    ITALIC = "italic"
+    CODE = "code"
+    LINK = "link"
+    IMAGE = "image"
 
 class TextNode:
-    def __init(self, text, url=None):
-        self.text_type = super().__init__(TextType) 
+    def __init__(self, text, text_type, url=None):
         self.text = text
+        self.text_type = text_type 
         self.url = url
     
     def __eq__(self, other):
-        if isinstance(other, TextType):
+        if isinstance(other, TextNode):
             if self.text == other.text and self.text_type == other.text_type and self.url == other.url:
                 return True
+        return False
     
+    def __repr__(self):
+        return f"TextNode({self.text} {self.text_type} {self.url})"
